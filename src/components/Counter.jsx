@@ -1,13 +1,14 @@
 import React, { useState } from "react";
+import CounterTask from "./CounterTask";
 
 const Counter = () => {
   const [num, setNum] = useState("");
-  const [showCounter,setShowCounter] =useState(false);
+  const [showCounter, setShowCounter] = useState(false);
   const handleClick = () => {
     setShowCounter(true);
   };
   const handleChange = (e) => {
-    parseInt(setNum(e.target.value));
+   setNum(e.target.value);
   };
   return (
     <div>
@@ -22,53 +23,13 @@ const Counter = () => {
       ) : (
         ""
       )}
-      {showCounter === false ? <button onClick={handleClick}>Make Counter</button> : ""}
-      {showCounter !== false ?<div>{num}</div>:""}
-      {showCounter !== false ? (
-        <button
-          onClick={() => {
-            parseInt(setNum(+num + 1));
-          }}
-        >
-          +
-        </button>
+      {showCounter === false ? (
+        <button onClick={handleClick}>Make Counter</button>
       ) : (
         ""
       )}
-      {showCounter !== false ? (
-        <button
-          onClick={() => {
-            parseInt(setNum(num - 1));
-          }}
-        >
-          -
-        </button>
-      ) : (
-        ""
-      )}
-      {showCounter !== false ? (
-        <button
-          onClick={() => {
-            parseInt(setNum(num * 2));
-          }}
-        >
-          *2
-        </button>
-      ) : (
-        ""
-      )}
-      {showCounter !== false ? (
-        <button
-          onClick={() => {
-            setShowCounter(false);
-            setNum("");
-          }}
-        >
-          Reset
-        </button>
-      ) : (
-        ""
-      )}
+      {showCounter !== false ? <CounterTask num={num}  /> : "" }
+      {showCounter !== false ? <button onClick={()=>{setNum(""); setShowCounter(false)}}>Reset</button> : "" }
     </div>
   );
 };

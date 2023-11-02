@@ -1,11 +1,16 @@
-import React from 'react'
+import React from "react";
 
-const TaskList = () => {
+const TaskList = (props) => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <>
+      {props === true ? (
+        <input type="checkbox" checked />
+      ) : (
+        <input type="checkbox" />
+      )}{" "}
+      <span>{props.task}</span>
+    </>
+  );
+};
 
-export default TaskList
+export default TaskList;
