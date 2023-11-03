@@ -11,6 +11,7 @@ const AddTask = () => {
     if (query !== "") {
       let newtask = {
         task: query,
+        id:Date.now(),
         status: false,
       };
       setTasks([...tasks, newtask]);
@@ -23,6 +24,13 @@ const AddTask = () => {
       handleClick();
     }
   };
+
+  const onDelete =(id)=>{
+    let todos = tasks.filter( task => task.id !== id);
+    setTasks(todos);
+  }
+
+
   return (
     <div>
       <input
@@ -32,11 +40,9 @@ const AddTask = () => {
         onKeyUp={handleKeyUp}
       />
       <button onClick={handleClick}>Add Task</button>
-      {tasks.map((task, index) => {
+      {tasks.map((task) => {
         return (
-          <div key={index}>
-            <TaskList {...task} />
-          </div>
+            <TaskList key={task.id} task={task} onDelete={onDelete} />
         );
       })}
     </div>

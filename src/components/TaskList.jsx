@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
-const TaskList = (props) => {
+const TaskList = ({ task, onDelete }) => {
+  const [completed, setCompleted] = useState(task.status);
   return (
-    <>
-      {props === true ? (
-        <input type="checkbox" checked />
-      ) : (
-        <input type="checkbox" />
-      )}{" "}
-      <span>{props.task}</span>
-    </>
+    <div key={task.id}>
+      <input
+        type="checkbox"
+        checked={completed}
+        onChange={(e) => {
+          setCompleted(e.target.checked);
+        }}
+      />
+      <span>{task.task}</span>
+      <button onClick={() => onDelete(task.id)}>Delete</button>
+    </div>
   );
 };
 
