@@ -11,7 +11,7 @@ const TaskList = ({ task, onDelete }) => {
           setCompleted(e.target.checked);
         }}
       />
-      <span>{task.task}</span>
+      <span style={completed ?{textDecoration:"line-through"}:{textDecoration:"none"}}>{task.task}</span>
       <button onClick={() => onDelete(task.id)}>Delete</button>
     </div>
   );
